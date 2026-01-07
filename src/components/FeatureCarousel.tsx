@@ -1,35 +1,36 @@
 import { useState } from 'react';
-import { Moon, Sun, Heart, Wind, Users } from 'lucide-react';
+import { Moon, Sun, Heart, Wind, Users, HardDriveUpload,Network,Lightbulb, ShieldPlus, MessageSquareCode} from 'lucide-react';
+
 
 const features = [
   {
-    title: 'Starting your day',
-    description: 'Wake up to personalized insights about your sleep and readiness',
-    icon: Sun,
+    title: 'Upload any 20 minute 10-20 montage scalp EEG',
+    header: 'Step 1 ' ,
+    icon: HardDriveUpload,
     color: 'from-orange-400 to-yellow-400',
   },
   {
-    title: 'Taking a walk',
-    description: 'Track your activity and understand how movement impacts your health',
-    icon: Wind,
+    title: 'Dynamic network modeling quantifies channel-to-channel interactions across time ',
+    header: 'Step 2',
+    icon: Network,
     color: 'from-blue-400 to-cyan-400',
   },
   {
-    title: 'Under the weather',
-    description: 'Monitor your body temperature and recovery metrics',
-    icon: Heart,
+    title: 'Under Fragility and source-sink analysis identifies unique dynamics within the network weather',
+    header: 'Step 3',
+    icon: Lightbulb,
     color: 'from-red-400 to-pink-400',
   },
   {
-    title: 'Winding down',
-    description: 'Optimize your evening routine for better sleep quality',
-    icon: Moon,
+    title: ' A trained classifier uses nodal fragility and source-sink connectivity features as inputs',
+    header: 'Step 4',
+    icon: ShieldPlus,
     color: 'from-indigo-400 to-purple-400',
   },
   {
-    title: 'Hosting a party',
-    description: 'See how social activities affect your energy and recovery',
-    icon: Users,
+    title: 'EpiScalp produces a risk score (0-100) to assist neurologists in diagnosing epilepsy',
+    header: 'Step 5',
+    icon: MessageSquareCode,
     color: 'from-green-400 to-emerald-400',
   },
 ];
@@ -42,7 +43,7 @@ export default function FeatureCarousel() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light mb-6">
-            The EzTrack Process/Meet the team
+            The EpiScalp Process
             <br />
           
           </h2>
@@ -59,7 +60,7 @@ export default function FeatureCarousel() {
                   : 'bg-white text-gray-700 hover:bg-gray-100'
               }`}
             >
-              {feature.title}
+              {feature.header}
             </button>
           ))}
         </div>
@@ -86,7 +87,7 @@ export default function FeatureCarousel() {
                       {feature.title}
                     </h3>
                     <p className="text-lg text-gray-600 font-light mb-8">
-                      {feature.description}
+                      
                     </p>
                     <div className="flex gap-2">
                       {features.map((_, i) => (
@@ -111,6 +112,15 @@ export default function FeatureCarousel() {
               );
             })}
           </div>
+        </div>
+
+        <div className="text-center mt-12">
+          <a
+            href="./episcalp"
+            className="text-xl text-blue-700 hover:text-orange-600 underline transition-colors duration-300"
+          >
+            View more
+          </a>
         </div>
       </div>
     </section>

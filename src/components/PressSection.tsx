@@ -105,6 +105,14 @@ export default function PressSection() {
             </a>
           ))}
         </div>
+         <div className="text-center mt-12">
+          <a
+            href="./blog-news"
+            className="text-xl text-blue-700 hover:text-orange-600 underline transition-colors duration-300"
+          >
+            View more
+          </a>
+        </div>
       </div>
     </section>
   );

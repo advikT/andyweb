@@ -1,202 +1,202 @@
-import { Search, Menu, ChevronDown } from "lucide-react";
+import { Search, Menu, ChevronDown, X } from "lucide-react";
 import Logo from "/neurologic_solutions.horizontal.color_.black_.png";
-
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface NavigationProps {
   scrolled: boolean;
 }
 
 export default function Navigation({ scrolled }: NavigationProps) {
-  // Always use a white navbar background so it remains visible over the dark hero
-  const navText = "text-black";
-  const navBg = "bg-white shadow-md";
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(
+    null
+  );
 
-  const panelBg = scrolled ? "bg-white" : "bg-white/75 backdrop-blur-md";
+  const navText = "text-black";
+
+  const navBg = scrolled
+    ? "bg-white shadow-md shadow-black/10"
+    : "bg-white";
+
+  const panelBg = scrolled
+    ? "bg-white"
+    : "bg-white";
+
   const panelText = "text-black";
   const panelChrome = "shadow-xl ring-1 ring-black/10";
 
   const dropdownWrapClass = `
-    absolute left-1/2 top-full mt-4 w-[950px] -translate-x-1/2
+    absolute left-1/2 top-full mt-0 w-[950px] -translate-x-1/2
     opacity-0 pointer-events-none translate-y-2
     group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0
-    transition-all duration-100
+    transition-all duration-200 z-50
   `;
 
-  const dropdownPad = "px-4 py-4";
+  const dropdownPad = "px-3.5 py-3";
 
-  const grid4x1 = "mt-2 grid grid-cols-4 gap-6 place-items-stretch text-center";
-  const grid3x1 = "mt-2 grid grid-cols-3 gap-6 place-items-stretch text-center";
-  const grid2x1 = "mt-2 grid grid-cols-2 gap-6 place-items-stretch text-center";
+  const grid3x1 = "mt-2 grid grid-cols-3 gap-5 place-items-stretch text-center";
+  const grid2x1 = "mt-2 grid grid-cols-2 gap-5 place-items-stretch text-center";
 
   const cardClass =
-    "w-full rounded-xl px-6 py-4 hover:bg-black/5 transition-colors";
+    "w-full rounded-lg px-3.5 py-3 hover:bg-black/5 transition-colors";
 
   const navItemClass =
-    "text-xs tracking-[0.22em] uppercase opacity-70 inline-flex items-center gap-1";
+    "text-[11px] tracking-[0.22em] uppercase opacity-80 inline-flex items-center gap-1";
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${navBg} ${navText}`}
     >
-      {/* ✅ wider container + more side padding */}
-      <div className="max-w-screen-2xl mx-auto px-10 py-4">
+      <div className="max-w-screen-2xl mx-auto px-6 py-2">
         <div className="flex items-center justify-between">
-          {/* ✅ nudge logo left */}
-          <a href="/" className="pl-2 inline-flex items-baseline">
-            <img
-              src={Logo}
-              alt="Neurologic Solutions"
-              className="h-20 w-auto"
-            />
-          </a>
+          {/* Logo */}
+          <Link to="/" className="inline-flex items-center">
+            <img src={Logo} alt="Neurologic Solutions" className="h-14 w-auto" />
+          </Link>
 
-
-          {/* ✅ nudge nav cluster right */}
-          <div className="ml-auto flex items-center space-x-12 pr-2">
-            <div className="hidden md:flex items-center space-x-8">
-              {/* Products dropdown */}
+          <div className="ml-auto flex items-center space-x-6">
+            <div className="hidden md:flex items-center space-x-6">
+              {/* Products */}
               <div className="relative group">
-                <a href="/products" className={navItemClass}>
+                <Link to="/products" className={navItemClass}>
                   Products
-                  <ChevronDown className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </Link>
 
                 <div className={dropdownWrapClass}>
-                  <div className="absolute left-1/2 -top-4 h-4 w-full -translate-x-1/2" />
-
-                  <div className={`rounded-2xl ${panelBg} ${panelText} ${panelChrome}`}>
+                  <div className="h-3" />
+                  <div
+                    className={`rounded-xl ${panelBg} ${panelText} ${panelChrome}`}
+                  >
                     <div className={dropdownPad}>
                       <div className={grid2x1}>
-                        <a href="/platform/overview" className={cardClass}>
-                          <div className="text-base font-light">EpiScalp</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/episcalp" className={cardClass}>
+                          <div className="text-sm font-light">EpiScalp</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Rapid EEG-Based Epilepsy Risk Assessment
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/platform/features" className={cardClass}>
-                          <div className="text-base font-light">EZTrack</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/eztrack" className={cardClass}>
+                          <div className="text-sm font-light">EZTrack</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Simplified EEG Fragility for Surgical Planning
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Clinical dropdown */}
+              {/* Clinical */}
               <div className="relative group">
-                <a href="/clinical" className={navItemClass}>
+                <Link to="/clinical" className={navItemClass}>
                   Clinical
-                  <ChevronDown className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </Link>
 
                 <div className={dropdownWrapClass}>
-                  <div className="absolute left-1/2 -top-4 h-4 w-full -translate-x-1/2" />
-
-                  <div className={`rounded-2xl ${panelBg} ${panelText} ${panelChrome}`}>
+                  <div className="h-3" />
+                  <div
+                    className={`rounded-xl ${panelBg} ${panelText} ${panelChrome}`}
+                  >
                     <div className={dropdownPad}>
                       <div className={grid3x1}>
-                        <a href="/clinical/evidence" className={cardClass}>
-                          <div className="text-base font-light">Clinical evidence</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/clinical-evidence" className={cardClass}>
+                          <div className="text-sm font-light">
+                            Clinical evidence
+                          </div>
+                          <div className="mt-1 text-xs opacity-70">
                             Outcomes and performance results
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/clinical/publications" className={cardClass}>
-                          <div className="text-base font-light">Publications</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/publications" className={cardClass}>
+                          <div className="text-sm font-light">
+                            Publications
+                          </div>
+                          <div className="mt-1 text-xs opacity-70">
                             Papers, posters, and abstracts
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/clinical/use-cases" className={cardClass}>
-                          <div className="text-base font-light">Use cases</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/use-cases" className={cardClass}>
+                          <div className="text-sm font-light">Use cases</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Where it helps most clinically
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Company dropdown */}
+              {/* Company */}
               <div className="relative group">
-                <a href="/company" className={navItemClass}>
+                <Link to="/company" className={navItemClass}>
                   Company
-                  <ChevronDown className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </Link>
 
                 <div className={dropdownWrapClass}>
-                  <div className="absolute left-1/2 -top-4 h-4 w-full -translate-x-1/2" />
-
-                  <div className={`rounded-2xl ${panelBg} ${panelText} ${panelChrome}`}>
+                  <div className="h-3" />
+                  <div
+                    className={`rounded-xl ${panelBg} ${panelText} ${panelChrome}`}
+                  >
                     <div className={dropdownPad}>
-                      <div className={grid3x1}>
-                        <a href="/company/about" className={cardClass}>
-                          <div className="text-base font-light">About us</div>
-                          <div className="mt-1 text-sm opacity-70">
+                      <div className={grid2x1}>
+                        <Link to="/about-us" className={cardClass}>
+                          <div className="text-sm font-light">About us</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Mission, vision, and story
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/company/team" className={cardClass}>
-                          <div className="text-base font-light">Team</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/team" className={cardClass}>
+                          <div className="text-sm font-light">Team</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Leadership and contributors
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/company/contact" className={cardClass}>
-                          <div className="text-base font-light">Contact</div>
-                          <div className="mt-1 text-sm opacity-70">
-                            General inquiries and partnerships
-                          </div>
-                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Resources dropdown */}
+              {/* Resources */}
               <div className="relative group">
-                <a href="/resources" className={navItemClass}>
+                <Link to="/resources" className={navItemClass}>
                   Resources
-                  <ChevronDown className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                </a>
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                </Link>
 
                 <div className={dropdownWrapClass}>
-                  <div className="absolute left-1/2 -top-4 h-4 w-full -translate-x-1/2" />
-
-                  <div className={`rounded-2xl ${panelBg} ${panelText} ${panelChrome}`}>
+                  <div className="h-2" />
+                  <div
+                    className={`rounded-xl ${panelBg} ${panelText} ${panelChrome}`}
+                  >
                     <div className={dropdownPad}>
-                      <div className={grid3x1}>
-                        <a href="/resources/news" className={cardClass}>
-                          <div className="text-base font-light">Blog / News</div>
-                          <div className="mt-1 text-sm opacity-70">
-                            Company updates and announcements
+                      <div className={grid2x1}>
+                        <Link to="/blog-news" className={cardClass}>
+                          <div className="text-sm font-light">
+                            Blog / News
                           </div>
-                        </a>
-
-                        <a href="/resources/media-kit" className={cardClass}>
-                          <div className="text-base font-light">For Investors</div>
-                          <div className="mt-1 text-sm opacity-70">
-                            Company information relevant to investors
+                          <div className="mt-1 text-xs opacity-70">
+                            Updates and announcements
                           </div>
-                        </a>
+                        </Link>
 
-                        <a href="/resources/contact" className={cardClass}>
-                          <div className="text-base font-light">Support</div>
-                          <div className="mt-1 text-sm opacity-70">
+                        <Link to="/support" className={cardClass}>
+                          <div className="text-sm font-light">Support</div>
+                          <div className="mt-1 text-xs opacity-70">
                             Help and getting started
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -204,23 +204,21 @@ export default function Navigation({ scrolled }: NavigationProps) {
               </div>
 
               {/* Request demo */}
-              <a
-                href="/request-demo"
-                className={`${navItemClass} rounded-full px-4 py-2 border border-black/20 hover:bg-black/5 transition-colors bg-yellow-400`}
+              <Link
+                to="/Contact-Us"
+                className={`${navItemClass} rounded-full px-3 py-1.5 border border-black/20 hover:bg-black/5 bg-yellow-400`}
               >
-                Request demo
-              </a>
+                Contact Us
+              </Link>
             </div>
 
             {/* Search */}
             <div className="relative group">
               <div className="flex items-center">
                 <Search className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity" />
-
                 <div
                   className="
-                    overflow-hidden
-                    w-0 opacity-0 ml-0
+                    overflow-hidden w-0 opacity-0 ml-0
                     group-hover:w-56 group-hover:opacity-100 group-hover:ml-3
                     focus-within:w-56 focus-within:opacity-100 focus-within:ml-3
                     transition-all duration-300
@@ -228,22 +226,237 @@ export default function Navigation({ scrolled }: NavigationProps) {
                 >
                   <input
                     type="text"
-                    placeholder="Search…"
-                    className="
-                      w-full rounded-full border border-black/20 bg-white
-                      px-4 py-2 text-sm font-light outline-none
-                      focus:border-black/40
-                    "
+                    placeholder="Search Neurologic…"
+                    className="w-full rounded-full border border-black/20 bg-white px-4 py-2 text-sm font-light outline-none focus:border-black/40"
                   />
                 </div>
               </div>
             </div>
 
-            <button className="md:hidden hover:opacity-70 transition-opacity">
-              <Menu className="w-6 h-6" />
+            {/* Mobile menu toggle */}
+            <button
+              className="md:hidden hover:opacity-70 transition-opacity"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-black/10 mt-2">
+            <div className="py-4 space-y-1">
+              {/* Products */}
+              <div>
+                <button
+                  onClick={() =>
+                    setExpandedMobileMenu(
+                      expandedMobileMenu === "products" ? null : "products"
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-black/5 rounded-lg transition-colors"
+                >
+                  <span className="text-sm font-light">Products</span>
+                  <ChevronDown
+                    className={`w-4 h-4 opacity-70 transition-transform ${
+                      expandedMobileMenu === "products" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {expandedMobileMenu === "products" && (
+                  <div className="bg-black/2 pl-4 py-2 space-y-2">
+                    <Link
+                      to="/episcalp"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>EpiScalp</div>
+                      <div className="text-xs opacity-70">
+                        Rapid EEG-Based Epilepsy Risk Assessment
+                      </div>
+                    </Link>
+                    <Link
+                      to="/eztrack"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>EZTrack</div>
+                      <div className="text-xs opacity-70">
+                        Simplified EEG Fragility for Surgical Planning
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Clinical */}
+              <div>
+                <button
+                  onClick={() =>
+                    setExpandedMobileMenu(
+                      expandedMobileMenu === "clinical" ? null : "clinical"
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-black/5 rounded-lg transition-colors"
+                >
+                  <span className="text-sm font-light">Clinical</span>
+                  <ChevronDown
+                    className={`w-4 h-4 opacity-70 transition-transform ${
+                      expandedMobileMenu === "clinical" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {expandedMobileMenu === "clinical" && (
+                  <div className="bg-black/2 pl-4 py-2 space-y-2">
+                    <Link
+                      to="/clinical-evidence"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Clinical Evidence</div>
+                      <div className="text-xs opacity-70">
+                        Outcomes and performance results
+                      </div>
+                    </Link>
+                    <Link
+                      to="/publications"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Publications</div>
+                      <div className="text-xs opacity-70">
+                        Papers, posters, and abstracts
+                      </div>
+                    </Link>
+                    <Link
+                      to="/use-cases"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Use Cases</div>
+                      <div className="text-xs opacity-70">
+                        Where it helps most clinically
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Company */}
+              <div>
+                <button
+                  onClick={() =>
+                    setExpandedMobileMenu(
+                      expandedMobileMenu === "company" ? null : "company"
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-black/5 rounded-lg transition-colors"
+                >
+                  <span className="text-sm font-light">Company</span>
+                  <ChevronDown
+                    className={`w-4 h-4 opacity-70 transition-transform ${
+                      expandedMobileMenu === "company" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {expandedMobileMenu === "company" && (
+                  <div className="bg-black/2 pl-4 py-2 space-y-2">
+                    <Link
+                      to="/about-us"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>About Us</div>
+                      <div className="text-xs opacity-70">
+                        Mission, vision, and story
+                      </div>
+                    </Link>
+                    <Link
+                      to="/team"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Team</div>
+                      <div className="text-xs opacity-70">
+                        Leadership and contributors
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Resources */}
+              <div>
+                <button
+                  onClick={() =>
+                    setExpandedMobileMenu(
+                      expandedMobileMenu === "resources" ? null : "resources"
+                    )
+                  }
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-black/5 rounded-lg transition-colors"
+                >
+                  <span className="text-sm font-light">Resources</span>
+                  <ChevronDown
+                    className={`w-4 h-4 opacity-70 transition-transform ${
+                      expandedMobileMenu === "resources" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {expandedMobileMenu === "resources" && (
+                  <div className="bg-black/2 pl-4 py-2 space-y-2">
+                    <Link
+                      to="/blog-news"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Blog / News</div>
+                      <div className="text-xs opacity-70">
+                        Updates and announcements
+                      </div>
+                    </Link>
+                    <Link
+                      to="/for-investors"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>For Investors</div>
+                      <div className="text-xs opacity-70">
+                        Investor-relevant information
+                      </div>
+                    </Link>
+                    <Link
+                      to="/support"
+                      className="block px-4 py-2 text-sm font-light hover:bg-black/5 rounded-lg transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <div>Support</div>
+                      <div className="text-xs opacity-70">
+                        Help and getting started
+                      </div>
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Contact Us */}
+              <div className="pt-2 border-t border-black/10">
+                <Link
+                  to="/Contact-Us"
+                  className="block px-4 py-3 text-sm font-light bg-yellow-400 rounded-lg hover:bg-yellow-300 transition-colors text-center"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

@@ -47,16 +47,15 @@ export default function Hero() {
             </h1>
 
             <p className="text-base md:text-lg text-slate-200 font-light max-w-xl mb-8 leading-relaxed">
-              Neurologic Solutions is pioneering precision in neuroimaging — empowering clinicians for accurate epilepsy
-              diagnosis and optimal treatment.
+              Neurologic Solutions pioneers precision neurodata analysis to help clinicians achieve accurate diagnosis and optimal treatment. We deliver reliable EEG analytics, actionable insights, and quantitative biomarkers that turn brain data into better clinical outcomes across neurological disorders.
             </p>
 
             <div className="flex items-center gap-4 mb-8">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 transition-shadow shadow-md inline-flex items-center space-x-2">
+              <a href="./episcalp" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 transition-shadow shadow-md inline-flex items-center space-x-2">
                 <span>Learn More</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
-              <a href="#contact" className="text-slate-200 hover:text-white underline">
+              </a>
+              <a href="./Contact-Us" className="text-slate-200 hover:text-white underline">
                 Contact Us
               </a>
             </div>
@@ -64,7 +63,7 @@ export default function Hero() {
         </div>
 
         {/* Mission & Vision Cards */}
-        <div className="-mt-16 pb-16 w-full flex justify-center px-6">
+        {/* <div className="-mt-16 pb-16 w-full flex justify-center px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
             <div className="bg-white/95 rounded-xl shadow-lg p-12">
               <div className="flex items-start gap-6">
@@ -101,10 +100,10 @@ export default function Hero() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
-        </div>
-      </div>
-    </section>
+        </div> */}
+      </div> 
+    </section>  
   );
 }

@@ -7,6 +7,7 @@ const products = [
     price: 'From $349',
     gradient: 'from-slate-900 to-slate-700',
     image: '/eztrack-sz.jpg',
+    link: './eztrack',
   },
   {
     title: 'EpiScalp',
@@ -15,6 +16,7 @@ const products = [
     gradient: 'from-gray-100 to-gray-300',
     dark: false,
     image: '/Episcalp.jpg',
+    link: './episcalp',
   },
 ];
 
@@ -24,9 +26,10 @@ export default function ProductCards() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           {products.map((product, index) => (
-            <div
+            <a
               key={index}
-              className={`relative rounded-3xl overflow-hidden bg-gradient-to-br ${product.gradient} p-12 min-h-[500px] flex flex-col justify-between group cursor-pointer transform hover:scale-[1.02] transition-all duration-500`}
+              href={product.link}
+              className={`relative rounded-3xl overflow-hidden bg-gradient-to-br ${product.gradient} p-12 min-h-[500px] flex flex-col justify-between group cursor-pointer transform hover:scale-[1.02] transition-all duration-500 no-underline`}
             >
               <div className="relative z-10">
                 <h3
@@ -52,14 +55,14 @@ export default function ProductCards() {
                 </p>
               </div>
               <div className="relative z-10">
-                <button
+                <div
                   className={`inline-flex items-center space-x-2 ${
                     product.dark === false ? 'text-black' : 'text-white'
                   } group-hover:translate-x-2 transition-transform duration-300`}
                 >
                   <span className="font-light">Learn More</span>
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity duration-500">
                 <img
@@ -68,7 +71,7 @@ export default function ProductCards() {
                   className="w-64 h-64 object-cover rounded-full shadow-2xl"
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
